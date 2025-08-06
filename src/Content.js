@@ -9,7 +9,7 @@ const Content = () => {
 
         const arr=["grow","give","Earn"]
         const num=Math.floor(Math.random()*3);
-        Setchangename(arr[num])  
+        Setchangename(arr[num])  ;
     }
     
 
