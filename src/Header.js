@@ -1,11 +1,15 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({title="To-Do list"}) => {
+  // by using the defaultProps is to implement in the Header parameter like above
   return (
     <header>
-        <h1>To Do List</h1>
+        <h1>{title}</h1>
     </header>
-  )
+  )  
 }
+// Header.defaultProps = {
+//     title : "To-Do list"
+//   }
 
-export default Header
+export default Header;
