@@ -14,7 +14,7 @@ function App(){
   const [newItem,SetnewItem]=useState('')
 
   const addItem=(iteme)=>{
-    const id=array.length?array[array.length-1].id+1:1
+    const id=array.length?array[array.length-1].id+1:1;
     const addNewItem={id,checked:false,iteme}
     const listItem=[...array,addNewItem]
     setArray(listItem)
