@@ -1,13 +1,17 @@
 import Header from "./Header";
 import Content from "./Content";
 import Footer from "./Footer";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import AddItem from "./AddItem";
 import SearchItem from "./SearchItem";
 function App(){
-  const [array,setArray]=useState( JSON.parse(localStorage.getItem("to_do_list"))
+  const [array,setArray]=useState([])
+    
+    useEffect(()=>{
+      JSON.parse(localStorage.getItem("to_do_list"))
+    },[])
+    
 
-    )
   const [newItem,SetnewItem]=useState('')
   const [searchItem,SetsearchItem]=useState('')
 
@@ -24,7 +28,7 @@ function App(){
         
       )
       setArray(changechecklist)
-      localStorage.setItem("to_do_list",JSON.stringify(changechecklist))
+      localStorage.setItem("to_do_list",JSON.stringify(changechecklist));
     }
     const Deletefunction=(id)=>{
       const afterdeletelist=array.filter((item)=>
@@ -32,7 +36,7 @@ function App(){
         
       )
       setArray(afterdeletelist)
-      localStorage.setItem("to_do_list",JSON.stringify(afterdeletelist))
+      localStorage.setItem("to_do_list",JSON.stringify(afterdeletelist));
     }
     const handleSubmit=(e)=>{
       e.preventDefault();
