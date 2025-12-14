@@ -1,29 +1,39 @@
 import React from 'react'
 import { useState } from 'react'
+import { FaTrashAlt } from "react-icons/fa";
 const Content = () => {
-    const names=()=>{
-      const name=['Earn','Grow','Give']
-      const number=Math.floor(Math.random()*3)
-       setNamechange(name[number])
-    }
-    const [namechange,setNamechange]=useState('Earn')
-    const [value,setValue]=useState(99)
-    const incrementfunction=()=>{
-      setValue((value)=> {return value+1})//this can be return to the function if it repeat then not specify the initial value on the path
-      setValue(value+1)//value is first value
-      
-    }
-    const decrementfunction=()=>{
-      setValue(value-1)
-    }
+    const [items,setItems]=useState(
+      [
+        {id:1,
+          checked:true,
+          value:"wake up at 5:00 am"
+        },
+        {id:2,
+          checked:false,
+          value:"read newspaper"
+        },
+        {id:3,
+          checked:true,
+          value:"complete breakfast"
+        },
+      ]
+    )
     
   return (
     <main>
-        <h3>Let's {namechange} Money</h3>
-        <button onClick={names}>click me</button>
-        <button onClick={decrementfunction}>-</button>
-        <span>{value}</span>
-        <button onClick={incrementfunction}>+</button>
+      <ul>
+        {items.map((item)=>(
+          <li>
+            <input 
+            type='checkbox'
+            checked={item.checked}
+          />
+          <label>{item.value}</label>
+          <FaTrashAlt/>
+          </li>
+        ))}
+      </ul>
+        
     </main>
   )
 }
