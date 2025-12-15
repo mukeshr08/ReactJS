@@ -18,22 +18,47 @@ const Content = () => {
         },
       ]
     )
-    
+    const changedickmark=(id)=>{
+      const listItems=items.map((item)=>(
+        item.id===id ?{...item,checked:!item.checked}:item
+      ))
+      setItems(listItems)
+      localStorage.setItem('To-Do list',JSON.stringify(listItems))
+    }
+    const deleteitem=(id)=>{
+      const listItems=items.filter((item)=>item.id!==id)
+      setItems(listItems)
+      localStorage.setItem('To-Do list',JSON.stringify(listItems))
+    }
   return (
     <main>
-      <ul>
+      {items.length?(
+        <ul>
         {items.map((item)=>(
-          <li>
+          <li className='item' key={item.id}>
             <input 
+            
             type='checkbox'
             checked={item.checked}
+            onChange={()=>changedickmark(item.id)}
+            
           />
-          <label>{item.value}</label>
-          <FaTrashAlt/>
+          <label 
+          onDoubleClick={()=>changedickmark(item.id)}
+          style={item.checked?{textDecoration:'line-through'}:null}
+            >{item.value}</label>
+          <FaTrashAlt
+          role='button'
+          
+          onClick={()=>deleteitem(item.id)}
+          tabIndex='0'
+          />
           </li>
         ))}
       </ul>
-        
+      ):
+      <p>list is empty</p>
+    }
     </main>
   )
 }
