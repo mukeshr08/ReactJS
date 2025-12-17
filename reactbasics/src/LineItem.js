@@ -13,7 +13,7 @@ const LineItem = ({item,changedickmark,deleteitem}) => {
           <label 
           onDoubleClick={()=>changedickmark(item.id)}
           style={item.checked?{textDecoration:'line-through'}:null}
-            >{item.value}</label>
+            >{item.item}</label>
           <FaTrashAlt
           role='button'
           
