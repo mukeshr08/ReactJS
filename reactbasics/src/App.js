@@ -2,8 +2,9 @@
 import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
+
 import Header from './Header';
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import SearchItem from './SearchItem';
 
 function App() {
@@ -38,7 +39,10 @@ function App() {
         if(!addnewItem)return;
         setaddnewItem('')
       }
-      
+      useEffect(()=>{
+        JSON.parse(localStorage.getItem('To-Do list'))
+
+      },[])
   return (
     <div className="App">
       <Header 
@@ -57,10 +61,12 @@ function App() {
         items={items.filter(item=>(item.item).toLowerCase().includes(searchItem.toLowerCase()))}
         changedickmark={changedickmark}
         deleteitem={deleteitem}
+        
       />
       <Footer 
         length={items.length}
       />
+      
     </div>
   );
 }

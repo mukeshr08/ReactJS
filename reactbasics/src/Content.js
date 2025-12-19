@@ -13,7 +13,7 @@ const Content = ({items,changedickmark,deleteitem}) => {
           deleteitem={deleteitem}
         />
       ):
-      <p>list is empty</p>
+      <p className='p'>list is empty</p>
     }
     </main>
   )

@@ -1,8 +1,11 @@
 import React from 'react'
-
 import LineItem from './LineItem';
+
 const ListItems = ({items,changedickmark,deleteitem}) => {
   return (
+    <div>
+
+    
     <ul>
         {items.map((item)=>(
           <LineItem
@@ -13,6 +16,8 @@ const ListItems = ({items,changedickmark,deleteitem}) => {
           />
         ))}
       </ul>
+      
+      </div>
   )
 }
 

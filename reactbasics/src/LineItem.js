@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaTrashAlt } from "react-icons/fa";
+
 const LineItem = ({item,changedickmark,deleteitem}) => {
   return (
     <li className='item' key={item.id}>
