@@ -9,7 +9,8 @@ import SearchItem from './SearchItem';
 
 function App() {
   const [items,setItems]=useState(
-        JSON.parse(localStorage.getItem('To-Do list'))
+            JSON.parse(localStorage.getItem('To-Do list'))||[]
+
       )
       const [addnewItem,setaddnewItem]=useState('')
       const [searchItem,setsearchItem]=useState('')
@@ -30,7 +31,7 @@ function App() {
         const newItem={id,checked:false,item:Item}
         const listItems=[...items,newItem]
         setItems(listItems)
-        localStorage.setItem('TO-Do list',JSON.stringify(listItems))
+        localStorage.setItem('To-Do list',JSON.stringify(listItems))
       }
       const handleaddnewItem=(e)=>{
         e.preventDefault();
@@ -42,7 +43,7 @@ function App() {
       useEffect(()=>{
         JSON.parse(localStorage.getItem('To-Do list'))
 
-      },[])
+      },[items])
   return (
     <div className="App">
       <Header 
