@@ -9,11 +9,12 @@ import SearchItem from './SearchItem';
 
 function App() {
   const [items,setItems]=useState(
-            JSON.parse(localStorage.getItem('To-Do list'))||[]
+            []
 
       )
       const [addnewItem,setaddnewItem]=useState('')
       const [searchItem,setsearchItem]=useState('')
+      const API_URL="http://localhost:3500/items"
       const changedickmark=(id)=>{
         const listItems=items.map((item)=>(
           item.id===id ?{...item,checked:!item.checked}:item
@@ -41,9 +42,21 @@ function App() {
         setaddnewItem('')
       }
       useEffect(()=>{
-        JSON.parse(localStorage.getItem('To-Do list'))
+        const fetchdata=async()=>{
+        try{
+            
+            const response =await fetch(API_URL)
+            console.log(response)
+            const listItems=await response.json()
+            console.log(listItems)
+            setItems(listItems)
 
-      },[items])
+          }
+        catch(err){
+          console.log(err.stack)
+        }}
+        (async()=>fetchdata())()
+      },[])
   return (
     <div className="App">
       <Header 
@@ -59,7 +72,7 @@ function App() {
       setsearchItem={setsearchItem}
       />
       <Content 
-        items={items.filter(item=>(item.item).toLowerCase().includes(searchItem.toLowerCase()))}
+        items={items.filter(item=>((item.item).toLowerCase()).includes(searchItem.toLowerCase()))}
         changedickmark={changedickmark}
         deleteitem={deleteitem}
         
