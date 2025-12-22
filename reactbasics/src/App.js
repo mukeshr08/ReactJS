@@ -8,31 +8,30 @@ import { useState,useEffect } from 'react'
 import SearchItem from './SearchItem';
 
 function App() {
-  const [items,setItems]=useState(
-            []
-
-      )
+      const [items,setItems]=useState([])
       const [addnewItem,setaddnewItem]=useState('')
       const [searchItem,setsearchItem]=useState('')
+      const[fetchError,setfetchError]=useState(null)
+      const[isLoading,setisLoading]=useState(true)
       const API_URL="http://localhost:3500/items"
       const changedickmark=(id)=>{
         const listItems=items.map((item)=>(
           item.id===id ?{...item,checked:!item.checked}:item
         ))
         setItems(listItems)
-        localStorage.setItem('To-Do list',JSON.stringify(listItems))
+        
       }
       const deleteitem=(id)=>{
         const listItems=items.filter((item)=>item.id!==id)
         setItems(listItems)
-        localStorage.setItem('To-Do list',JSON.stringify(listItems))
+        
       }
       const formatnewItem=(Item)=>{
         const id=items.length?items[items.length-1].id+1:1
         const newItem={id,checked:false,item:Item}
         const listItems=[...items,newItem]
         setItems(listItems)
-        localStorage.setItem('To-Do list',JSON.stringify(listItems))
+        
       }
       const handleaddnewItem=(e)=>{
         e.preventDefault();
@@ -47,15 +46,24 @@ function App() {
             
             const response =await fetch(API_URL)
             console.log(response)
+            if(!response.ok) throw Error('Data not received')
             const listItems=await response.json()
             console.log(listItems)
             setItems(listItems)
-
+            setfetchError(null)
           }
         catch(err){
-          console.log(err.stack)
+          setfetchError(err.message)
+        }
+      finally{
+          setisLoading(false)
         }}
-        (async()=>fetchdata())()
+        setTimeout(()=>{
+            (async()=> await fetchdata())()
+        },2000)
+
+        
+        
       },[])
   return (
     <div className="App">
@@ -71,12 +79,17 @@ function App() {
       searchItem={searchItem}
       setsearchItem={setsearchItem}
       />
+      <main>
+      {isLoading && <p>Loading Time ...</p>}
+      {fetchError && <p>{`Error${fetchError}`}</p>}
+      {!isLoading && !fetchError &&
       <Content 
         items={items.filter(item=>((item.item).toLowerCase()).includes(searchItem.toLowerCase()))}
         changedickmark={changedickmark}
         deleteitem={deleteitem}
         
-      />
+      />}
+      </main>
       <Footer 
         length={items.length}
       />

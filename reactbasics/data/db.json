@@ -2,18 +2,18 @@
     "items": [
         {
             "id": 1,
-            "name": "Item One",
-            "description": "This is the first item."
+            "checked": true,
+            "item": "This is the first item."
         },
         {
             "id": 2,
-            "name": "Item Two",
-            "description": "This is the second item."
+            "checked": false,
+            "item": "This is the second item."
         },
         {
             "id": 3,
-            "name": "Item Three",
-            "description": "This is the third item."
+            "checked": false,
+            "item": "This is the third item."
         }
     ]
 }

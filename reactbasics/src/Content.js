@@ -5,7 +5,7 @@ import ListItems from './ListItems';
 const Content = ({items,changedickmark,deleteitem}) => {
     
   return (
-    <main>
+    <>
       {items.length?(
         <ListItems
           items={items}
@@ -15,7 +15,7 @@ const Content = ({items,changedickmark,deleteitem}) => {
       ):
       <p className='p'>list is empty</p>
     }
-    </main>
+    </>
   )
 }
 
