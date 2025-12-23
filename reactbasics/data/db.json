@@ -1,19 +1,44 @@
 {
-    "items": [
-        {
-            "id": 1,
-            "checked": true,
-            "item": "This is the first item."
-        },
-        {
-            "id": 2,
-            "checked": false,
-            "item": "This is the second item."
-        },
-        {
-            "id": 3,
-            "checked": false,
-            "item": "This is the third item."
-        }
-    ]
+  "items": [
+    {
+      "id": 1,
+      "checked": false,
+      "item": "the"
+    },
+    {
+      "id": 2,
+      "checked": false,
+      "item": "ewww"
+    },
+    {
+      "id": 3,
+      "checked": false,
+      "item": "wef"
+    },
+    {
+      "id": 4,
+      "checked": false,
+      "item": "weef"
+    },
+    {
+      "id": 5,
+      "checked": false,
+      "item": "wef"
+    },
+    {
+      "id": 6,
+      "checked": false,
+      "item": "wee"
+    },
+    {
+      "id": 7,
+      "checked": false,
+      "item": "hello"
+    },
+    {
+      "id": 8,
+      "checked": false,
+      "item": "react"
+    }
+  ]
 }

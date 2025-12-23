@@ -2,7 +2,7 @@
 import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
-
+import apiRequest from './apiRequest';
 import Header from './Header';
 import { useState,useEffect } from 'react'
 import SearchItem from './SearchItem';
@@ -14,23 +14,44 @@ function App() {
       const[fetchError,setfetchError]=useState(null)
       const[isLoading,setisLoading]=useState(true)
       const API_URL="http://localhost:3500/items"
-      const changedickmark=(id)=>{
+      const changedickmark=async(id)=>{
         const listItems=items.map((item)=>(
           item.id===id ?{...item,checked:!item.checked}:item
         ))
         setItems(listItems)
-        
+        const itemUpdate=listItems.filter((item)=>item.id==id)
+        const updateOption={
+          method:'PATCH',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({checked:itemUpdate[0].checked})
+        }
+        const reqURL=`${API_URL}/${id}`
+        const result=await apiRequest(reqURL,updateOption)
+        if(result) setfetchError(result)
       }
-      const deleteitem=(id)=>{
+      const deleteitem=async (id)=>{
         const listItems=items.filter((item)=>item.id!==id)
         setItems(listItems)
+        const deleteOption={
+          method:'DELETE'
+        }
+        const reqURL=`${API_URL}/${id}`
+        const result=await apiRequest(reqURL,deleteOption)
+        if (result) setfetchError(result)
         
       }
-      const formatnewItem=(Item)=>{
-        const id=items.length?items[items.length-1].id+1:1
+      const formatnewItem=async (Item)=>{
+        const id=items.length? (items[items.length-1].id + 1) :1
         const newItem={id,checked:false,item:Item}
         const listItems=[...items,newItem]
         setItems(listItems)
+        const postOption={
+          method:'POST',
+          header:{'Content-Type':'application/json'},
+          body:JSON.stringify(newItem)
+        }
+        const result= await apiRequest(API_URL,postOption)
+        if(result)setfetchError(result)
         
       }
       const handleaddnewItem=(e)=>{
@@ -39,6 +60,7 @@ function App() {
         formatnewItem(addnewItem)
         if(!addnewItem)return;
         setaddnewItem('')
+        
       }
       useEffect(()=>{
         const fetchdata=async()=>{
@@ -81,7 +103,7 @@ function App() {
       />
       <main>
       {isLoading && <p>Loading Time ...</p>}
-      {fetchError && <p>{`Error${fetchError}`}</p>}
+      {fetchError && <p>{`Error : ${fetchError}`}</p>}
       {!isLoading && !fetchError &&
       <Content 
         items={items.filter(item=>((item.item).toLowerCase()).includes(searchItem.toLowerCase()))}
