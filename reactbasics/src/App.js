@@ -15,11 +15,12 @@ function App() {
       const[isLoading,setisLoading]=useState(true)
       const API_URL="http://localhost:3500/items"
       const changedickmark=async(id)=>{
+        id=Number(id)
         const listItems=items.map((item)=>(
           item.id===id ?{...item,checked:!item.checked}:item
         ))
         setItems(listItems)
-        const itemUpdate=listItems.filter((item)=>item.id==id)
+        const itemUpdate=listItems.filter((item)=>item.id===id)
         const updateOption={
           method:'PATCH',
           headers:{'Content-Type':'application/json'},
@@ -30,12 +31,13 @@ function App() {
         if(result) setfetchError(result)
       }
       const deleteitem=async (id)=>{
+        id=Number(id)
         const listItems=items.filter((item)=>item.id!==id)
         setItems(listItems)
         const deleteOption={
           method:'DELETE'
         }
-        const reqURL=`${API_URL}/${id}`
+        const reqURL= `${API_URL}/${id}`
         const result=await apiRequest(reqURL,deleteOption)
         if (result) setfetchError(result)
         
@@ -47,7 +49,7 @@ function App() {
         setItems(listItems)
         const postOption={
           method:'POST',
-          header:{'Content-Type':'application/json'},
+          headers:{'Content-Type':'application/json'},
           body:JSON.stringify(newItem)
         }
         const result= await apiRequest(API_URL,postOption)

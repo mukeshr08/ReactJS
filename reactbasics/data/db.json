@@ -1,44 +1,24 @@
 {
   "items": [
     {
-      "id": 1,
+      "id": "1",
       "checked": false,
-      "item": "the"
+      "item": "react"
     },
     {
-      "id": 2,
+      "id": "2",
       "checked": false,
-      "item": "ewww"
+      "item": "mukesh"
     },
     {
-      "id": 3,
+      "id": "3",
       "checked": false,
-      "item": "wef"
+      "item": "rust"
     },
     {
       "id": 4,
       "checked": false,
-      "item": "weef"
-    },
-    {
-      "id": 5,
-      "checked": false,
-      "item": "wef"
-    },
-    {
-      "id": 6,
-      "checked": false,
-      "item": "wee"
-    },
-    {
-      "id": 7,
-      "checked": false,
-      "item": "hello"
-    },
-    {
-      "id": 8,
-      "checked": false,
-      "item": "react"
+      "item": "mukesh"
     }
   ]
 }
