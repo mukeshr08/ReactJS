@@ -1,24 +1,3 @@
 {
-  "items": [
-    {
-      "id": "1",
-      "checked": false,
-      "item": "react"
-    },
-    {
-      "id": "2",
-      "checked": false,
-      "item": "mukesh"
-    },
-    {
-      "id": "3",
-      "checked": false,
-      "item": "rust"
-    },
-    {
-      "id": 4,
-      "checked": false,
-      "item": "mukesh"
-    }
-  ]
+  "items": []
 }

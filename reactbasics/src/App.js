@@ -15,7 +15,6 @@ function App() {
       const[isLoading,setisLoading]=useState(true)
       const API_URL="http://localhost:3500/items"
       const changedickmark=async(id)=>{
-        id=Number(id)
         const listItems=items.map((item)=>(
           item.id===id ?{...item,checked:!item.checked}:item
         ))
@@ -31,7 +30,7 @@ function App() {
         if(result) setfetchError(result)
       }
       const deleteitem=async (id)=>{
-        id=Number(id)
+        
         const listItems=items.filter((item)=>item.id!==id)
         setItems(listItems)
         const deleteOption={
@@ -43,7 +42,8 @@ function App() {
         
       }
       const formatnewItem=async (Item)=>{
-        const id=items.length? (items[items.length-1].id + 1) :1
+        let  id=items.length? (Number(items[items.length-1].id) + 1) :1
+        id=String(id)
         const newItem={id,checked:false,item:Item}
         const listItems=[...items,newItem]
         setItems(listItems)
