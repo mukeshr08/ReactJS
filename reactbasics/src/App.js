@@ -1,5 +1,5 @@
 
-import AddItem from './AddItem';
+import AddItem from './AddItem'
 import Content from './Content';
 import Footer from './Footer';
 import apiRequest from './apiRequest';
